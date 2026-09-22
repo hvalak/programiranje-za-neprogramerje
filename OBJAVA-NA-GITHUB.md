@@ -73,11 +73,24 @@ Nalaganje traja nekaj sekund; PDF-ja sta skupaj 5 MB.
 
 ## Korak 5 — Nov projekt iz repozitorija
 
-1. V nadzorni plošči izberi **Workers & Pages** → **Create** → zavihek **Pages**
-2. **Connect to Git** → poveži svoj GitHub račun
-3. Cloudflare vpraša, do katerih repozitorijev sme dostopati — izberi
+> ⚠️ **Najpomembnejši korak v celotnih navodilih.**
+> Cloudflare ima dve storitvi in privzeto ti ponudi napačno.
+>
+> | Storitev | Naslov, ki ga dobiš |
+> |---|---|
+> | **Worker** (privzeto ponujen) | `programiranje-za-neprogramerje.`**`hvalak`**`.workers.dev` |
+> | **Pages** (to hočeš) | `programiranje-za-neprogramerje.pages.dev` |
+>
+> Worker ima v sredini naslova poddomeno tvojega računa in je ni mogoče odstraniti.
+> Če pristaneš na Workerju, moraš projekt izbrisati in začeti znova.
+
+1. V nadzorni plošči izberi **Workers & Pages** → **Create**
+2. **Preklopi na zavihek `Pages`.** Če vidiš besedi *Worker*, *Start with Hello World*
+   ali *Import a repository* pod zavihkom Workers, si na napačnem mestu
+3. **Connect to Git** → poveži svoj GitHub račun
+4. Cloudflare vpraša, do katerih repozitorijev sme dostopati — izberi
    `programiranje-za-neprogramerje` (ali *All repositories*, če ti je vseeno)
-4. Izberi repozitorij → **Begin setup**
+5. Izberi repozitorij → **Begin setup**
 
 ## Korak 6 — Nastavitve
 
@@ -144,6 +157,8 @@ ostaneta PDF-ja taka, kot sta bila.
 | Cloudflare ne vidi repozitorija | Pri povezavi nisi dal dostopa do njega. GitHub → Settings → Applications → Cloudflare Pages → Configure |
 | Stran je prazna ali brez oblikovanja | *Build output directory* ni `/`. Popravi v Settings → Builds and deployments |
 | Naslov ni tak, kot si želel | Ime projekta je določilo poddomeno. Preimenovati ga ni mogoče — projekt izbriši in ustvari znova s pravim imenom |
+| Naslov se konča z `.workers.dev` | Nastal je Worker namesto Pages projekta (glej opozorilo pri koraku 5). Ustvari nov projekt pod zavihkom **Pages**, preveri, da deluje, nato Worker izbriši |
+| `/presenter.html` vrne preusmeritev | Normalno — Cloudflare odreže končnico in preusmeri na `/presenter`. Brskalnik ji sledi sam, predavateljsko okno deluje |
 | Sprememba se ne pokaže | Poglej zavihek **Deployments** — če je objava spodletela, je razlog tam zapisan |
 
 ---
