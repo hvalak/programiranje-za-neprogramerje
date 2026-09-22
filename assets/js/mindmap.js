@@ -111,6 +111,22 @@
     return s;
   }
 
+  /* Na telefonu je radialni zemljevid neberljiv (13 enot pisave na 1000 enot sirine).
+     Zato se poleg njega izrise se seznam; CSS pokaze enega ali drugega. */
+  function listMarkup(data, ui, done) {
+    var out = '<ul class="mm-list">';
+    data.modules.forEach(function (m) {
+      var empty = !(m.items && m.items.length);
+      out += '<li class="mm-li' + (done.has('m' + m.id) ? ' done' : '') + '">' +
+        '<button type="button" class="mm-node" data-goto="m' + m.id + '">' +
+        '<span class="mm-num">' + m.id + '</span>' +
+        '<span class="mm-t">' + esc(m.t) + '</span>' +
+        '<span class="mm-c">' + (empty ? '—' : (m.items.length + ' ' + ui.mapConcepts)) + '</span>' +
+        '</button></li>';
+    });
+    return out + '</ul>';
+  }
+
   function renderModule(m, ui) {
     var items = m.items || [];
     var s = '';
@@ -169,7 +185,8 @@
         mount.innerHTML =
           '<div class="mm-wrap"><svg class="mindmap" viewBox="0 0 ' + W + ' ' + H + '" ' +
           'xmlns="http://www.w3.org/2000/svg" role="img" aria-label="' + esc(ui.mapTitle) + '">' +
-          body + '</svg><p class="mm-hint">' + esc(open ? ui.mapHintIn : ui.mapHint) + '</p></div>';
+          body + '</svg><p class="mm-hint">' + esc(open ? ui.mapHintIn : ui.mapHint) + '</p>' +
+          listMarkup(data, ui, done) + '</div>';
       }
 
       mount.addEventListener('click', function (e) {
