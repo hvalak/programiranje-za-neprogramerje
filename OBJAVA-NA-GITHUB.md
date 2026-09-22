@@ -1,55 +1,54 @@
-# Objava gradiva na GitHub Pages
+# Objava gradiva — GitHub + Cloudflare Pages
 
-Navodila po korakih. Traja približno deset minut, večino časa čakaš na GitHub.
+Navodila po korakih. Traja približno petnajst minut, večino časa čakaš.
 Ko enkrat opraviš, je vsaka naslednja objava tri vrstice.
 
-**Rezultat:** stalen javni naslov oblike
-`https://TVOJE-IME.github.io/programiranje-za-neprogramerje/`
-ki deluje, tudi ko je tvoj računalnik ugasnjen.
+**Rezultat:**
+
+```
+https://programiranje-za-neprogramerje.pages.dev
+```
+
+Stalen naslov brez uporabniškega imena, deluje tudi ko je tvoj računalnik ugasnjen.
 
 ---
 
-## Preden začneš
+## Zakaj dve storitvi
 
-Repozitorij mora biti **javen** — brezplačni GitHub Pages iz zasebnih repozitorijev ne delujejo.
-Za to gradivo to ni težava: licenca CC BY-SA že tako predvideva deljenje.
+Nista tekmeca — vsaka opravi svoj del:
 
-Iz objave so izvzete tri stvari (nastavljeno v `.gitignore`):
+| | Kaj počne | Zakaj ravno ta |
+|---|---|---|
+| **GitHub** | hrani datoteke in zgodovino sprememb | vrnitev na staro različico; AI agent lahko potiska popravke |
+| **Cloudflare Pages** | streže stran obiskovalcem | ime projekta je poddomena — GitHub bi v naslov vedno vrinil tvoje uporabniško ime |
 
-| Izvzeto | Zakaj |
-|---|---|
-| `assets/bin/cloudflared.exe` | 55 MB; vsak si ga naloži sam z `namesti.bat` |
-| `programiranje-za-neprogramerje.zip` | nastane z `naredi-pdf.bat`; GitHub ima svoj gumb *Download ZIP* |
-| `plans/` | delovne opombe projekta, vključno s podatki o porabi |
+Cloudflare se poveže na GitHub. Ko potisneš spremembo, se stran sama objavi v minuti ali dveh.
 
-Če želiš `plans/` vseeno objaviti, izbriši tisto vrstico iz `.gitignore`.
+**GitHub Pages ti ni treba vklopiti.** Če ga vseeno vklopiš, bo gradivo dosegljivo na dveh
+naslovih hkrati — to ni narobe, je pa nepotrebno.
 
 ---
 
-## Korak 1 — Račun na GitHubu
+# 1. del — GitHub
+
+## Korak 1 — Račun
 
 Če ga še nimaš: [github.com/signup](https://github.com/signup). Brezplačen paket zadošča.
-
-Zapomni si **uporabniško ime** — v naslovu strani bo prav to.
-
----
 
 ## Korak 2 — Nov repozitorij
 
 1. Odpri [github.com/new](https://github.com/new)
 2. **Repository name:** `programiranje-za-neprogramerje`
-3. **Public** *(obvezno za brezplačne Pages)*
-4. **Ne** obkljukaj *Add a README file*, *Add .gitignore* ne *Choose a license* — vse to že imaš v mapi
+3. **Public**
+4. **Ne** obkljukaj *Add a README file*, *Add .gitignore* ne *Choose a license* — vse to že imaš
 5. **Create repository**
 
 GitHub ti pokaže stran z ukazi. Ignoriraj jo, spodaj so pravi.
 
----
-
 ## Korak 3 — Pošlji datoteke
 
-Odpri ukazni poziv v mapi projekta. Najlažje: v Raziskovalcu se postavi v
-`D:\programiranje\programiranjezaneprogramerje`, v naslovno vrstico vpiši `cmd` in pritisni Enter.
+Odpri ukazni poziv v mapi projekta: v Raziskovalcu se postavi v
+`D:\programiranje\programiranjezaneprogramerje`, v naslovno vrstico vpiši `cmd`, Enter.
 
 Prvi commit je že narejen, zato ostanejo tri vrstice. **V prvi zamenjaj `TVOJE-IME`:**
 
@@ -66,29 +65,54 @@ Nalaganje traja nekaj sekund; PDF-ja sta skupaj 5 MB.
 
 ---
 
-## Korak 4 — Vklopi GitHub Pages
+# 2. del — Cloudflare Pages
 
-1. V repozitoriju klikni **Settings** (zgoraj desno)
-2. V levem stolpcu **Pages**
-3. **Source:** `Deploy from a branch`
-4. **Branch:** `main`, mapa `/ (root)` → **Save**
+## Korak 4 — Račun
 
-Počakaj eno do dve minuti. Osveži stran — na vrhu se pojavi zelen okvir z naslovom.
+Če ga še nimaš: [dash.cloudflare.com](https://dash.cloudflare.com/sign-up). Brezplačen, brez kartice.
+
+## Korak 5 — Nov projekt iz repozitorija
+
+1. V nadzorni plošči izberi **Workers & Pages** → **Create** → zavihek **Pages**
+2. **Connect to Git** → poveži svoj GitHub račun
+3. Cloudflare vpraša, do katerih repozitorijev sme dostopati — izberi
+   `programiranje-za-neprogramerje` (ali *All repositories*, če ti je vseeno)
+4. Izberi repozitorij → **Begin setup**
+
+## Korak 6 — Nastavitve
+
+Tu je edino mesto, kjer se da zmotiti. Vnesi točno to:
+
+| Polje | Vrednost |
+|---|---|
+| **Project name** | `programiranje-za-neprogramerje` ← **to postane naslov** |
+| **Production branch** | `main` |
+| **Framework preset** | `None` |
+| **Build command** | *pusti prazno* |
+| **Build output directory** | `/` |
+
+Ime projekta določa poddomeno, zato mora biti natanko tako zapisano — z vezaji.
+
+Prazen *build command* je pravilen: gradivo je že pripravljeno in ga ni treba prevajati.
+Cloudflare bo datoteke samo prekopiral.
+
+Klikni **Save and Deploy**. Prva objava traja pol minute.
 
 ---
 
-## Korak 5 — Preveri
+# 3. del — Preveri
 
-Odpri naslov. Ko deluje, si zapiši še neposredne povezave:
+Odpri naslov in poglej, da deluje vse troje:
 
 ```
-https://TVOJE-IME.github.io/programiranje-za-neprogramerje/
-https://TVOJE-IME.github.io/programiranje-za-neprogramerje/?lang=en
-https://TVOJE-IME.github.io/programiranje-za-neprogramerje/osnove-programiranja-SL.pdf
-https://TVOJE-IME.github.io/programiranje-za-neprogramerje/programming-basics-EN.pdf
+https://programiranje-za-neprogramerje.pages.dev/
+https://programiranje-za-neprogramerje.pages.dev/?lang=en
+https://programiranje-za-neprogramerje.pages.dev/osnove-programiranja-SL.pdf
+https://programiranje-za-neprogramerje.pages.dev/programming-basics-EN.pdf
 ```
 
-Popravi še povezavo na vrhu datoteke `README.md`, da kaže na pravi naslov.
+Preveri še predstavitveni pogled in predavateljsko okno (tipka `P`) — obojemu mora
+brskalnik dovoliti odpiranje novega okna.
 
 ---
 
@@ -102,33 +126,45 @@ git commit -m "Popravek besedila v modulu 3"
 git push
 ```
 
-Stran se osveži sama v eni do dveh minutah.
+Cloudflare zazna spremembo in objavi novo različico sam. Traja minuto ali dve.
+V nadzorni plošči vidiš seznam vseh objav in se lahko z enim klikom vrneš na prejšnjo.
 
-Če si popravil tudi vsebino, ki mora v PDF, prej poženi `naredi-pdf.bat` — sicer ostaneta
-PDF-ja taka, kot sta bila.
+Če si popravil vsebino, ki mora tudi v PDF, prej poženi `naredi-pdf.bat` — sicer
+ostaneta PDF-ja taka, kot sta bila.
 
 ---
 
 ## Če gre kaj narobe
 
-| Sporočilo | Kaj pomeni |
+| Težava | Kaj pomeni |
 |---|---|
 | `remote origin already exists` | Ukaz iz koraka 3 si pognal dvakrat. Popravi z `git remote set-url origin ...` |
 | `failed to push some refs` | Na GitHubu si vseeno ustvaril README. Poženi `git pull --rebase origin main`, nato znova `git push` |
-| `Authentication failed` | Prijava v brskalniku ni uspela. Poženi `git push` znova — okno se odpre ponovno |
-| Stran kaže 404 | Pages še ni zgrajen (počakaj dve minuti), ali pa je branch napačen — preveri Korak 4 |
-| Stran je brez oblikovanja | Redko. Preveri, da je v mapi datoteka `.nojekyll` |
+| `Authentication failed` | Prijava v brskalniku ni uspela. Poženi `git push` znova |
+| Cloudflare ne vidi repozitorija | Pri povezavi nisi dal dostopa do njega. GitHub → Settings → Applications → Cloudflare Pages → Configure |
+| Stran je prazna ali brez oblikovanja | *Build output directory* ni `/`. Popravi v Settings → Builds and deployments |
+| Naslov ni tak, kot si želel | Ime projekta je določilo poddomeno. Preimenovati ga ni mogoče — projekt izbriši in ustvari znova s pravim imenom |
+| Sprememba se ne pokaže | Poglej zavihek **Deployments** — če je objava spodletela, je razlog tam zapisan |
 
 ---
 
-## Zakaj ravno ta pot
+## Kasneje: lastna domena
 
-GitHub Pages ni tehnično boljši od Cloudflare Pages, kamor bi mapo preprosto povlekel.
-Ima pa tri prednosti, ki so za to gradivo pomembne: stalen naslov, **zgodovina vseh sprememb**
-in možnost, da popravke potisne kar AI agent.
+Če boš kdaj želel `programiranje-za-neprogramerje.si` namesto `.pages.dev`, domeno najameš
+(okoli 15–25 € na leto) in jo v Cloudflaru dodaš pod **Custom domains**. Naslov `.pages.dev`
+ostane in deluje naprej, zato stare povezave ne odmrejo.
 
-Poleg tega boš s tem dejansko uporabil `git` iz pojma 9.7 — in razlika med tem, da si o njem
-bral, in tem, da si z njim objavil svoje gradivo, je precejšnja.
+Prednost lastne domene ni videz, ampak da je tvoja: če zamenjaš gostitelja, naslov ostane isti.
+
+---
+
+## Viri
+
+- [Cloudflare Pages — povezava z gitom](https://developers.cloudflare.com/pages/get-started/git-integration/)
+- [Cloudflare Pages — nastavitve gradnje](https://developers.cloudflare.com/pages/configuration/build-configuration/)
+- [Cloudflare Pages — lastne domene](https://developers.cloudflare.com/pages/configuration/custom-domains/)
+- [Cloudflare Pages — omejitve brezplačnega paketa](https://developers.cloudflare.com/pages/platform/limits/)
+- [GitHub Pages — o storitvi](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages) *(če bi kdaj želel še to)*
 
 ---
 

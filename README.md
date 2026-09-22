@@ -5,8 +5,7 @@
 Gradivo v dvanajstih modulih in 107 pojmih — vsak pojem so trije stavki in primer kode z izpisom.
 Na voljo v slovenščini in angleščini.
 
-👉 **[Odpri gradivo](https://klemen.github.io/programiranje-za-neprogramerje/)**
-*(naslov popravi, ko bo repozitorij objavljen)*
+👉 **[Odpri gradivo](https://programiranje-za-neprogramerje.pages.dev/)** · [English](https://programiranje-za-neprogramerje.pages.dev/?lang=en)
 
 📕 [Priročnik v PDF — slovensko](osnove-programiranja-SL.pdf) · 116 strani
 📗 [Handbook in PDF — English](programming-basics-EN.pdf) · 118 pages
@@ -64,6 +63,11 @@ Vse besedilo je v dveh datotekah, ki ju lahko urejaš v Beležnici:
 - [`content/content-en.js`](content/content-en.js) — angleška različica *(pisana vzporedno, ne prevedena)*
 
 V glavi vsake datoteke je razloženo, kaj pomeni katero polje.
+
+## Objava
+
+Stran gostuje na Cloudflare Pages in se ob vsakem `git push` objavi sama.
+Postopek je opisan v [OBJAVA-NA-GITHUB.md](OBJAVA-NA-GITHUB.md).
 
 ## Tehnične opombe
 
