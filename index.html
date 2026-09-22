@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="sl" data-theme="dark" data-view="handbook">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programiranje za neprogramerje</title>
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top">
+    <span class="brand-mark" id="brandMark" aria-hidden="true"></span>
+    <span class="brand-text">
+      <strong data-ui="title">Programiranje za neprogramerje</strong>
+      <small data-ui="subtitle"></small>
+    </span>
+  </a>
+
+  <nav class="controls">
+    <div class="seg" role="group" aria-label="Pogled">
+      <button type="button" data-view-btn="handbook" data-ui="viewHandbook">Priročnik</button>
+      <button type="button" data-view-btn="slides" data-ui="viewSlides">Predstavitev</button>
+    </div>
+    <div class="seg" role="group" aria-label="Jezik">
+      <button type="button" data-lang-btn="sl">SL</button>
+      <button type="button" data-lang-btn="en">EN</button>
+    </div>
+    <button type="button" class="icon slides-only" id="coreBtn" title="jedro / vse">◆</button>
+    <button type="button" class="icon" id="searchBtn" title="/">⌕</button>
+    <button type="button" class="icon" id="themeBtn" title="Tema">◑</button>
+    <button type="button" class="icon" id="helpBtn" title="?">?</button>
+  </nav>
+</header>
+
+<div class="progressbar" id="progressbar"><i></i></div>
+
+<main id="app" aria-live="polite"></main>
+
+<footer class="colophon">
+  <span class="colophon-logo" id="colophonMark" aria-hidden="true"></span>
+  <span>Klemen Hvala · Fundacija Zlata ovca · 2026 · <span data-ui="license">CC BY-SA 4.0</span></span>
+</footer>
+
+<div class="blackout" id="blackout" hidden></div>
+
+<div class="overlay" id="searchOv" hidden>
+  <div class="overlay-box">
+    <input type="search" id="searchIn" autocomplete="off" spellcheck="false">
+    <ul id="searchOut"></ul>
+  </div>
+</div>
+
+<div class="overlay" id="gridOv" hidden>
+  <div class="overlay-box wide"><div id="gridOut" class="slidegrid"></div></div>
+</div>
+
+<dialog id="helpDlg" class="dlg">
+  <h3 data-ui="helpTitle">Tipke</h3>
+  <ul id="helpKeys"></ul>
+  <form method="dialog"><button data-ui="close">Zapri</button></form>
+</dialog>
+
+<script src="content/content-sl.js"></script>
+<script src="content/content-en.js"></script>
+<script src="assets/js/logo.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/viz.js"></script>
+<script src="assets/js/code.js"></script>
+<script src="assets/js/mindmap.js"></script>
+<script src="assets/js/demos.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

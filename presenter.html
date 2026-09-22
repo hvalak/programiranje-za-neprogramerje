@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="sl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predavateljski pogled</title>
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="presenter">
+
+<header class="pv-top">
+  <span class="pv-badge" id="pvBadge">—</span>
+  <span class="pv-clock"><small data-ui="elapsed">Seja</small> <b id="pvElapsed">00:00</b></span>
+  <span class="pv-clock"><small data-ui="onSlide">Na slajdu</small> <b id="pvOnSlide">00:00</b></span>
+  <span class="pv-spacer"></span>
+  <button type="button" id="pvPrev">←</button>
+  <button type="button" id="pvNext">→</button>
+  <button type="button" id="pvReset" title="00:00">⟲</button>
+</header>
+
+<main class="pv-main">
+  <section class="pv-now">
+    <h1 id="pvTitle">—</h1>
+    <ul id="pvSentences"></ul>
+  </section>
+
+  <aside class="pv-side">
+    <div class="pv-block">
+      <span class="pv-label" data-ui="nextSlide">Naslednji</span>
+      <p id="pvNextTitle">—</p>
+    </div>
+    <div class="pv-block grow">
+      <span class="pv-label" data-ui="notesTitle">Opombe</span>
+      <p id="pvNotes">—</p>
+    </div>
+  </aside>
+</main>
+
+<p class="pv-warn" id="pvWarn" hidden></p>
+
+<script src="content/content-sl.js"></script>
+<script src="content/content-en.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/presenter.js"></script>
+</body>
+</html>

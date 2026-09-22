@@ -1,0 +1,19 @@
+# Prenesena orodja — vsak si jih naloži sam z namesti.bat (55 MB, presega razumno mejo za repozitorij)
+assets/bin/
+
+# Zapakirano gradivo — nastane z naredi-pdf.bat; GitHub ponuja svoj "Download ZIP"
+programiranje-za-neprogramerje.zip
+
+# Delovne opombe projekta (vsebujejo tudi podatke o porabi) — če jih želiš objaviti, izbriši to vrstico
+plans/
+
+# Python
+__pycache__/
+*.pyc
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Stanje seje Claude Code
+.claude/
